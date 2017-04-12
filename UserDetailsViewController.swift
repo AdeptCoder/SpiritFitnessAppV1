@@ -21,6 +21,27 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
     @IBOutlet weak var sexlabel: UILabel!
     @IBOutlet weak var weightlabel: UILabel!
     
+    @IBAction func LogOutAction(_ sender: Any) {
+        SingletonClass.shared.isLoggedin = false
+            let loginPageController = (
+                storyboard?.instantiateViewController(
+                    withIdentifier: "LoginContoller")
+                )!
+            loginPageController.modalTransitionStyle = .crossDissolve
+            present(loginPageController, animated: true, completion: nil)
+        
+            namelabel.text = ""
+                SingletonClass.shared.username = ""
+            emailidlabel.text = ""
+                SingletonClass.shared.useremail = ""
+            agelabel.text = ""
+                SingletonClass.shared.userage = ""
+            sexlabel.text = ""
+                SingletonClass.shared.usersex = ""
+            weightlabel.text = ""
+                SingletonClass.shared.userweight = ""
+        
+    }
    
     private var _name = String()
     

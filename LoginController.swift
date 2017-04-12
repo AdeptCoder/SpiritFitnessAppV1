@@ -60,8 +60,6 @@ class LoginController: UIViewController,UITextFieldDelegate {
     */
     
     @IBAction func loginAction(_ sender: Any) {
-        
-        //self.dismiss(animated: true, completion: nil)
         if self.emailtxt.text == "" || self.passwordtxt.text == "" {
             
             //Alert to tell the user that there was an error because they didn't fill anything in the textfields because they didn't fill anything in
@@ -79,13 +77,8 @@ class LoginController: UIViewController,UITextFieldDelegate {
                 
                 if error == nil {
                     let id = user?.uid
-                    print("USER VAL::::\(id!)")
-                    //SingletonClass.shared.userIDKey = FIRAuth.auth()?.currentUser?.key
-                    
-                     //let ref = FIRDatabase.database().reference()
-                    // let userID = FIRAuth.auth()?.currentUser?.uid
                     FIRDatabase.database().reference().child("users").child(id!).observeSingleEvent(of: .value, with: { (snapshot) in
-                       
+                
                         let userDictionary = snapshot.value as? [String:Any]!
                          SingletonClass.shared.userDict = userDictionary!
                         SingletonClass.shared.username = userDictionary?["name"] as! String
@@ -93,24 +86,9 @@ class LoginController: UIViewController,UITextFieldDelegate {
                         SingletonClass.shared.userage = userDictionary?["age"] as! String
                          SingletonClass.shared.usersex = userDictionary?["sex"] as! String
                         SingletonClass.shared.userweight = userDictionary?["weight"] as! String
-                        //SingletonClass.shared.username = userDictionary["Name"]
-                        print("USER DICTIONARY: \(userDictionary)")
-                        print("\nUSER Name: \(SingletonClass.shared.username)")
                     })
-                    //print("Dictionary-----\(self.userDict)")
+                    
                     SingletonClass.shared.isLoggedin = true
-                   /* SingletonClass.shared.username = "sumi"
-                    SingletonClass.shared.useremail = "sumi@gmail.com"
-                    SingletonClass.shared.userage = "24"
-                    SingletonClass.shared.usersex = "female"
-                    SingletonClass.shared.userweight = "140"*/
-                    
-                    //Print into the console if successfully logged in
-                    print("You have successfully logged in")
-                    //Go to the HomeViewController if the login is sucessful
-                    
-                    //let vc = self.storyboard?.instantiateViewController(withIdentifier: "Home")
-                    //self.present(vc!, animated: true, completion: nil)
                     self.dismiss(animated: true,completion: nil)
                     let alertController = UIAlertController(title: "SUCCESS!", message: "You Have Successfully Log in.", preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)

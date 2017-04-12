@@ -12,7 +12,6 @@ import GoogleMobileAds
 class SingletonClass{
     
     static let shared = SingletonClass()
-    var isAlreadyLaunchedOnce:Bool
     var isLoggedin:Bool
     var username:String
     var userage:String
@@ -22,7 +21,6 @@ class SingletonClass{
     var userDict :[String:Any]
     private init(){
         userDict = [:]
-    isAlreadyLaunchedOnce = false
     isLoggedin = false
     username = ""
     userage = ""

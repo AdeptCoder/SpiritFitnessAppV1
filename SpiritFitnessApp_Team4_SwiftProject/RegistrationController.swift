@@ -65,12 +65,6 @@ class RegistrationController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     func addUsers(uid:String){
-      //  let key = userData.childByAutoId().key
-        //let key = uid;
-        print("UNIQUE VAL::::\(uid)")
-        // print("USER VAL::::\(key)")
-        //-->//have made the address input as an empty string because of an error
-        
         let users:[String:Any] = [ "id" : uid,
                       "name": nametxt.text! as String,
                       "address": addresstxt.text! as String,
@@ -83,8 +77,8 @@ class RegistrationController: UIViewController, UIPickerViewDataSource, UIPicker
 
         
         userData.child(uid).updateChildValues(users)
-         //labelMessage.text = "User Added"
     }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -132,10 +126,7 @@ class RegistrationController: UIViewController, UIPickerViewDataSource, UIPicker
             FIRAuth.auth()?.createUser(withEmail: email!, password: password!, completion: { (user: FIRUser?, error) in
                 if error == nil {
                     let uidval = user?.uid
-                    
-                    print("USER VAL::::\(uidval!)")
                    self.addUsers(uid: uidval!)   // add the user details into Firebase Database
-                    
                     self.dismiss(animated: true, completion: nil)
                     let alertController = UIAlertController(title: "SUCCESS!", message: "You Have Successfully Registered.", preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -150,19 +141,7 @@ class RegistrationController: UIViewController, UIPickerViewDataSource, UIPicker
                 
             })
         }
-        //performSegue(withIdentifier: "UserDetailsViewController", sender: self)
     }
     
-   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination1 = segue.destination as? UserDetailsViewController {
-            destination1.name = nametxt.text!
-            destination1.age = agetxt.text!
-            destination1.email = emailtxt.text!
-            destination1.sex = sextxt.text!
-            destination1.weight = weighttxt.text!
-            
-            
-        }
-    }*/
 }
 
