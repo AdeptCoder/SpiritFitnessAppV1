@@ -64,12 +64,14 @@ class RegistrationController: UIViewController, UIPickerViewDataSource, UIPicker
         textFieldref=textField
     }
     
-    func addUsers(){
-        let key = userData.childByAutoId().key
-        
+    func addUsers(uid:String){
+      //  let key = userData.childByAutoId().key
+        //let key = uid;
+        print("UNIQUE VAL::::\(uid)")
+        // print("USER VAL::::\(key)")
         //-->//have made the address input as an empty string because of an error
         
-        let users = [ "id" :key,
+        let users:[String:Any] = [ "id" :uid,
                       "Name:": nametxt.text! as String,
                       "Address:": addresstxt.text! as String,
                       "email:": emailtxt.text! as String,
@@ -78,7 +80,7 @@ class RegistrationController: UIViewController, UIPickerViewDataSource, UIPicker
                       "weight:": weighttxt.text! as String,
                       "password:": passwordtxt.text! as String]
         
-        userData.child(key).setValue(users)
+        userData.child(uid).updateChildValues(users)
          //labelMessage.text = "User Added"
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -127,7 +129,10 @@ class RegistrationController: UIViewController, UIPickerViewDataSource, UIPicker
         } else {
             FIRAuth.auth()?.createUser(withEmail: email!, password: password!, completion: { (user: FIRUser?, error) in
                 if error == nil {
-                   self.addUsers()   // add the user details into Firebase Database
+                    let uidval = user?.uid
+                    
+                    print("USER VAL::::\(uidval!)")
+                   self.addUsers(uid: uidval!)   // add the user details into Firebase Database
                     
                     self.dismiss(animated: true, completion: nil)
                     let alertController = UIAlertController(title: "SUCCESS!", message: "You Have Successfully Registered.", preferredStyle: .alert)

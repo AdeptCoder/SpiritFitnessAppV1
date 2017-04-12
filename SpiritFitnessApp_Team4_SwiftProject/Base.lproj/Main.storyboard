@@ -679,7 +679,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFe-sP-zI8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFe-sP-zI8">
                                 <rect key="frame" x="162" y="515" width="193" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="1gz-xc-rge"/>
@@ -734,6 +734,17 @@
                                 <state key="normal" title="PhotoLibrary"/>
                                 <connections>
                                     <action selector="PhotoLibraryAction:" destination="McC-Xw-4Rh" eventType="touchUpInside" id="li4-6E-EbR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDZ-FA-24m">
+                                <rect key="frame" x="108" y="164" width="166" height="143"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Change Me">
+                                    <color key="titleColor" red="0.87399573553760579" green="0.10430680818405143" blue="0.89248889593908631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="ChangeProfilePicAction:" destination="McC-Xw-4Rh" eventType="touchUpInside" id="Ac5-ba-bDW"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -13,7 +13,7 @@ import FirebaseAuth
 class LoginController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var emailtxt: UITextField!
     @IBOutlet weak var passwordtxt: UITextField!
- 
+     var userDict:[String:Any] = [:]
     @IBAction func RegisterButton(_ sender: Any) {
         let loginPageController = (
             storyboard?.instantiateViewController(
@@ -78,16 +78,23 @@ class LoginController: UIViewController,UITextFieldDelegate {
             FIRAuth.auth()?.signIn(withEmail: self.emailtxt.text!, password: self.passwordtxt.text!) { (user, error) in
                 
                 if error == nil {
+                    let id = user?.uid
+                    print("USER VAL::::\(id!)")
                     //SingletonClass.shared.userIDKey = FIRAuth.auth()?.currentUser?.key
-                    /*
-                     let ref = FIRDatabase.database().reference(fromURL: "DATABASE_URl")
-                     let userID = FIRAuth.auth()?.currentUser?.id
-                     let usersRef = ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-                     print(snapshot)*/
+                    
+                     //let ref = FIRDatabase.database().reference()
+                    // let userID = FIRAuth.auth()?.currentUser?.uid
+                    FIRDatabase.database().reference().child("users").child(id!).observeSingleEvent(of: .value, with: { (snapshot) in
+                       
+                        let userDictionary = snapshot.value as? [String:Any]
+                        
+                        print("USER DICTIONARY: \(userDictionary)")
+                    })
+                    print("Dictionary-----\(self.userDict)")
                     SingletonClass.shared.isLoggedin = true
                     SingletonClass.shared.username = "sumi"
                     SingletonClass.shared.useremail = "sumi@gmail.com"
-                   SingletonClass.shared.userage = "24"
+                    SingletonClass.shared.userage = "24"
                     SingletonClass.shared.usersex = "female"
                     SingletonClass.shared.userweight = "140"
                     

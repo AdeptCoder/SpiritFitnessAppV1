@@ -70,6 +70,35 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
         }
     }
     
+    @IBAction func ChangeProfilePicAction(_ sender: Any) {
+        let changeProfilePicMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let CameraAction = UIAlertAction(title: "Camera", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.CameraActionfn()
+            
+        })
+        let photoLib = UIAlertAction(title: "Photo Library", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.PhotoLibActionfn()
+            
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            self.CancelActionfn()
+            
+        })
+
+        changeProfilePicMenu.addAction(CameraAction)
+        changeProfilePicMenu.addAction(photoLib)
+        changeProfilePicMenu.addAction(cancel)
+        self.present(changeProfilePicMenu, animated: true, completion: nil)
+    }
+    
+    func CancelActionfn(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,8 +109,7 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func CameraAction(_ sender: Any) {
+    func CameraActionfn(){
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = UIImagePickerControllerSourceType.camera // for taking photo with camera
@@ -89,13 +117,23 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
         present(picker, animated:true) {
         }
     }
-    @IBAction func PhotoLibraryAction(_ sender: Any) {
+    
+    func PhotoLibActionfn(){
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = UIImagePickerControllerSourceType.photoLibrary  // for selecting picture from photoLibrary
         picker.allowsEditing = false
         self.present(picker, animated:true) {
         }
+ 
+    }
+    
+    @IBAction func CameraAction(_ sender: Any) {
+        CameraActionfn()
+    }
+    
+    @IBAction func PhotoLibraryAction(_ sender: Any) {
+        PhotoLibActionfn()
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
