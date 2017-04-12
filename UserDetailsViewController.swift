@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMobileAds
+import Firebase
 
 class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate,GADBannerViewDelegate {
       @IBOutlet weak var nextbtn: UIButton!
@@ -22,6 +23,7 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
     @IBOutlet weak var weightlabel: UILabel!
     
     @IBAction func LogOutAction(_ sender: Any) {
+        try! FIRAuth.auth()!.signOut()
         SingletonClass.shared.isLoggedin = false
             let loginPageController = (
                 storyboard?.instantiateViewController(
