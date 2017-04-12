@@ -71,14 +71,16 @@ class RegistrationController: UIViewController, UIPickerViewDataSource, UIPicker
         // print("USER VAL::::\(key)")
         //-->//have made the address input as an empty string because of an error
         
-        let users:[String:Any] = [ "id" :uid,
-                      "Name:": nametxt.text! as String,
-                      "Address:": addresstxt.text! as String,
-                      "email:": emailtxt.text! as String,
-                      "city:": citytxt.text! as String,
-                      "age:": agetxt.text! as String,
-                      "weight:": weighttxt.text! as String,
-                      "password:": passwordtxt.text! as String]
+        let users:[String:Any] = [ "id" : uid,
+                      "name": nametxt.text! as String,
+                      "address": addresstxt.text! as String,
+                      "email": emailtxt.text! as String,
+                      "city": citytxt.text! as String,
+                      "age": agetxt.text! as String,
+                      "weight": weighttxt.text! as String,
+                      "password": passwordtxt.text! as String,
+                      "sex":sextxt.text! as String]
+
         
         userData.child(uid).updateChildValues(users)
          //labelMessage.text = "User Added"

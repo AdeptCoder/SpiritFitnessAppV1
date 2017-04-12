@@ -19,8 +19,9 @@ class SingletonClass{
     var useremail:String
     var usersex:String
     var userweight:String
-     var userDict:[String:Any] = [:]
+    var userDict :[String:Any]
     private init(){
+        userDict = [:]
     isAlreadyLaunchedOnce = false
     isLoggedin = false
     username = ""

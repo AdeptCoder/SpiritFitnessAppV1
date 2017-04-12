@@ -86,17 +86,24 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     // let userID = FIRAuth.auth()?.currentUser?.uid
                     FIRDatabase.database().reference().child("users").child(id!).observeSingleEvent(of: .value, with: { (snapshot) in
                        
-                        let userDictionary = snapshot.value as? [String:Any]
+                        let userDictionary = snapshot.value as? [String:Any]!
                          SingletonClass.shared.userDict = userDictionary!
+                        SingletonClass.shared.username = userDictionary?["name"] as! String
+                        SingletonClass.shared.useremail = userDictionary?["email"] as! String
+                        SingletonClass.shared.userage = userDictionary?["age"] as! String
+                         SingletonClass.shared.usersex = userDictionary?["sex"] as! String
+                        SingletonClass.shared.userweight = userDictionary?["weight"] as! String
+                        //SingletonClass.shared.username = userDictionary["Name"]
                         print("USER DICTIONARY: \(userDictionary)")
+                        print("\nUSER Name: \(SingletonClass.shared.username)")
                     })
                     //print("Dictionary-----\(self.userDict)")
                     SingletonClass.shared.isLoggedin = true
-                    SingletonClass.shared.username = "sumi"
+                   /* SingletonClass.shared.username = "sumi"
                     SingletonClass.shared.useremail = "sumi@gmail.com"
                     SingletonClass.shared.userage = "24"
                     SingletonClass.shared.usersex = "female"
-                    SingletonClass.shared.userweight = "140"
+                    SingletonClass.shared.userweight = "140"*/
                     
                     //Print into the console if successfully logged in
                     print("You have successfully logged in")

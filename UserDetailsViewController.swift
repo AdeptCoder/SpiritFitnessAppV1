@@ -12,6 +12,7 @@ import GoogleMobileAds
 class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate,GADBannerViewDelegate {
       @IBOutlet weak var nextbtn: UIButton!
     @IBOutlet weak var PhotoLibrary: UIButton!
+    @IBOutlet weak var adBannerview: GADBannerView!
     @IBOutlet weak var Camera: UIButton!
     @IBOutlet weak var ImageViewOrg: UIImageView!
     @IBOutlet weak var namelabel: UILabel!
@@ -20,7 +21,7 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
     @IBOutlet weak var sexlabel: UILabel!
     @IBOutlet weak var weightlabel: UILabel!
     
-    @IBOutlet weak var adBannerview: GADBannerView!
+   
     private var _name = String()
     
     var name : String {
@@ -75,13 +76,10 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         adBannerview.delegate = self
-        //appDelegate.adBannerView.isHidden = true
         adBannerview.rootViewController = self
        adBannerview.adUnitID = "ca-app-pub-9339720089672206/8417837977"
         adBannerview.load(GADRequest())
-        
-        
-            }
+}
     
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
@@ -174,15 +172,13 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
             present(loginPageController, animated: true, completion: nil)
         }
         else{
-            
             namelabel.text = SingletonClass.shared.username
             emailidlabel.text = SingletonClass.shared.useremail
             agelabel.text =  SingletonClass.shared.userage
             sexlabel.text = SingletonClass.shared.usersex
             weightlabel.text = SingletonClass.shared.userweight
         }
-        print("Dictionary-----\(SingletonClass.shared.userDict)")
-
+       // print("Dictionary-----\(SingletonClass.shared.userDict)")
     }
 
     /*

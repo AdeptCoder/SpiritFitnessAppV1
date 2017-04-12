@@ -634,7 +634,7 @@
                                     <constraint firstAttribute="height" constant="21" id="OAF-Pn-1tf"/>
                                     <constraint firstAttribute="width" constant="141" id="ZlU-Ix-opa"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -773,11 +773,6 @@
                                     <action selector="ChangeProfilePicAction:" destination="McC-Xw-4Rh" eventType="touchUpInside" id="Ac5-ba-bDW"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pJ5-9p-3l4" customClass="GADBannerView">
-                                <rect key="frame" x="0.0" y="569" width="375" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.76444019719631451" green="0.92442094438232281" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Change Me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ame-Ax-rEB">
                                 <rect key="frame" x="108" y="282" width="166" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -785,6 +780,11 @@
                                 <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z65-62-4rd" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="569" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.7644401972" green="0.9244209444" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -823,7 +823,7 @@
                         <outlet property="Camera" destination="Lii-XS-4iv" id="dDi-GI-gks"/>
                         <outlet property="ImageViewOrg" destination="tkT-SZ-gDH" id="RzY-sl-wa6"/>
                         <outlet property="PhotoLibrary" destination="m5E-lO-bns" id="tvy-Op-NRu"/>
-                        <outlet property="adBannerview" destination="pJ5-9p-3l4" id="9v0-O1-10j"/>
+                        <outlet property="adBannerview" destination="Z65-62-4rd" id="I12-hF-KG5"/>
                         <outlet property="agelabel" destination="gX4-mG-aLB" id="Vkk-6g-Poz"/>
                         <outlet property="emailidlabel" destination="oIV-cF-ymW" id="2ek-5I-Q3i"/>
                         <outlet property="namelabel" destination="69p-vA-ndo" id="eJY-gO-cfl"/>
