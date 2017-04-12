@@ -124,10 +124,18 @@
                                     <navigationItem title="Activities Report" id="YDH-Dy-BOp"/>
                                 </items>
                             </navigationBar>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDu-zY-luc" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="571" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.7644401972" green="0.9244209444" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="history" id="B8O-TZ-9Bc"/>
+                    <connections>
+                        <outlet property="adBannerview" destination="nDu-zY-luc" id="dXW-MM-n9F"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cy4-wn-8Sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -322,10 +330,16 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Xa-rV-bVb" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="619" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.7644401972" green="0.9244209444" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="adBannerview" destination="0Xa-rV-bVb" id="Kn8-9b-3Ox"/>
                         <outlet property="dateTitleLabel" destination="MqA-KN-RoG" id="Yrt-tk-COR"/>
                     </connections>
                 </viewController>
@@ -356,11 +370,17 @@
                                 <color key="textColor" red="0.69246238441940133" green="1" blue="0.69754649211881092" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rel-Rr-NIM" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="570" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.7644401972" green="0.9244209444" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="WalkMeter" image="walkicon" id="2ez-bB-i0Q"/>
                     <connections>
+                        <outlet property="adBannerview" destination="rel-Rr-NIM" id="chL-OP-BXj"/>
                         <outlet property="stepsLabel" destination="aWn-to-AKM" id="sfd-Kt-5yx"/>
                     </connections>
                 </viewController>
@@ -463,6 +483,11 @@
                                             <action selector="startWorkOut:" destination="tty-Sv-ivF" eventType="touchUpInside" id="Gji-h8-Vmc"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kAn-sY-qPU" customClass="GADBannerView">
+                                        <rect key="frame" x="0.0" y="548" width="375" height="49"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.7644401972" green="0.9244209444" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -472,6 +497,7 @@
                     <tabBarItem key="tabBarItem" title="WorkOut" image="dumbell" id="Vvb-0B-qCl"/>
                     <connections>
                         <outlet property="StartStopLabel" destination="Wtb-dB-n4O" id="CLI-Rq-ooY"/>
+                        <outlet property="adBannerview" destination="kAn-sY-qPU" id="vfb-6O-JYm"/>
                         <outlet property="frontView" destination="dWD-0Y-iHw" id="T5x-OM-ULX"/>
                         <outlet property="nextWorkOutButton" destination="inL-tg-3de" id="enK-6C-8oo"/>
                         <outlet property="previousWorkOutButton" destination="xd4-Df-W6f" id="c5m-Bf-SSH"/>
@@ -740,13 +766,25 @@
                                 <rect key="frame" x="108" y="164" width="166" height="143"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Change Me">
-                                    <color key="titleColor" red="0.87399573553760579" green="0.10430680818405143" blue="0.89248889593908631" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="ChangeProfilePicAction:" destination="McC-Xw-4Rh" eventType="touchUpInside" id="Ac5-ba-bDW"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pJ5-9p-3l4" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="569" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.76444019719631451" green="0.92442094438232281" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Change Me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ame-Ax-rEB">
+                                <rect key="frame" x="108" y="282" width="166" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                <color key="textColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -785,6 +823,7 @@
                         <outlet property="Camera" destination="Lii-XS-4iv" id="dDi-GI-gks"/>
                         <outlet property="ImageViewOrg" destination="tkT-SZ-gDH" id="RzY-sl-wa6"/>
                         <outlet property="PhotoLibrary" destination="m5E-lO-bns" id="tvy-Op-NRu"/>
+                        <outlet property="adBannerview" destination="pJ5-9p-3l4" id="9v0-O1-10j"/>
                         <outlet property="agelabel" destination="gX4-mG-aLB" id="Vkk-6g-Poz"/>
                         <outlet property="emailidlabel" destination="oIV-cF-ymW" id="2ek-5I-Q3i"/>
                         <outlet property="namelabel" destination="69p-vA-ndo" id="eJY-gO-cfl"/>

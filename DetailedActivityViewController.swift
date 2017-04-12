@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import GoogleMobileAds
 
 class activityDetailsCustomTableViewCell: UITableViewCell{
     @IBOutlet weak var deviceSourceDetials: UILabel!
@@ -23,9 +23,10 @@ class activityDetailsCustomForStepsTableViewCell: UITableViewCell{
     @IBOutlet weak var distanceWalkedDetails: UILabel!
 }
 
-class DetailedActivityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DetailedActivityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,GADBannerViewDelegate {
    @IBOutlet weak var dateTitleLabel: UILabel!
     
+    @IBOutlet weak var adBannerview: GADBannerView!
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 1
     }
@@ -98,9 +99,26 @@ func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) ->
         let month = components.month!
         let day = components.day!
         dateTitleLabel.text = "Date: \(month)-\(day)-\(year)"
-
-        // Do any additional setup after loading the view.
+       
+        adBannerview.delegate = self
+        //appDelegate.adBannerView.isHidden = true
+        adBannerview.rootViewController = self
+        adBannerview.adUnitID = "ca-app-pub-9339720089672206/8417837977"
+        adBannerview.load(GADRequest())
+        
+        
     }
+    
+    
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        adBannerview.isHidden = false
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        adBannerview.isHidden = true
+    }
+        // Do any additional setup after loading the view.
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

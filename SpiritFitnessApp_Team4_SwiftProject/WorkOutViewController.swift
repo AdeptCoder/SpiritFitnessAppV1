@@ -8,8 +8,10 @@
 
 import UIKit
 import AVFoundation
-class WorkOutViewController: UIViewController {
+import GoogleMobileAds
+class WorkOutViewController: UIViewController,GADBannerViewDelegate {
     
+    @IBOutlet weak var adBannerview: GADBannerView!
     @IBOutlet weak var titleToolBar: UIToolbar!
     
     @IBOutlet var timerLabel: UILabel!
@@ -191,6 +193,22 @@ class WorkOutViewController: UIViewController {
         //self.frontView.backgroundColor = UIColor(patternImage: UIImage(named: "bg1.png")!)
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg1.png")!)
         // Do any additional setup after loading the view, typically from a nib.
+        adBannerview.delegate = self
+        //appDelegate.adBannerView.isHidden = true
+        adBannerview.rootViewController = self
+        adBannerview.adUnitID = "ca-app-pub-9339720089672206/8417837977"
+        adBannerview.load(GADRequest())
+        
+        
+    }
+    
+    
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        adBannerview.isHidden = false
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        adBannerview.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {

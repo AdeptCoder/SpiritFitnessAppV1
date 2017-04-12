@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 import CoreMotion
-
-class WalkingMeter: UIViewController {
+import GoogleMobileAds
+class WalkingMeter: UIViewController,GADBannerViewDelegate {
     
+    @IBOutlet weak var adBannerview: GADBannerView!
     @IBOutlet weak var stepsLabel: UILabel!
 var days:[String] = []
 var stepsTaken:[Int] = []
@@ -42,7 +43,25 @@ override func viewDidLoad() {
             })
         }
     }
-}
+    
+    adBannerview.delegate = self
+    //appDelegate.adBannerView.isHidden = true
+    adBannerview.rootViewController = self
+    adBannerview.adUnitID = "ca-app-pub-9339720089672206/8417837977"
+    adBannerview.load(GADRequest())
+    
+    
+    }
+    
+    
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        adBannerview.isHidden = false
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        adBannerview.isHidden = true
+    }
+
 
 override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()

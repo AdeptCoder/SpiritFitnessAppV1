@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GoogleMobileAds
 
 class SingletonClass{
     
@@ -18,7 +19,7 @@ class SingletonClass{
     var useremail:String
     var usersex:String
     var userweight:String
-    
+     var userDict:[String:Any] = [:]
     private init(){
     isAlreadyLaunchedOnce = false
     isLoggedin = false

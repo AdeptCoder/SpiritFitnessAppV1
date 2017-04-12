@@ -7,10 +7,10 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
-class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate {
- 
-    @IBOutlet weak var nextbtn: UIButton!
+class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UITextFieldDelegate,GADBannerViewDelegate {
+      @IBOutlet weak var nextbtn: UIButton!
     @IBOutlet weak var PhotoLibrary: UIButton!
     @IBOutlet weak var Camera: UIButton!
     @IBOutlet weak var ImageViewOrg: UIImageView!
@@ -20,6 +20,7 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
     @IBOutlet weak var sexlabel: UILabel!
     @IBOutlet weak var weightlabel: UILabel!
     
+    @IBOutlet weak var adBannerview: GADBannerView!
     private var _name = String()
     
     var name : String {
@@ -70,6 +71,27 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
         }
     }
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        adBannerview.delegate = self
+        //appDelegate.adBannerView.isHidden = true
+        adBannerview.rootViewController = self
+       adBannerview.adUnitID = "ca-app-pub-9339720089672206/8417837977"
+        adBannerview.load(GADRequest())
+        
+        
+            }
+    
+    
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        adBannerview.isHidden = false
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        adBannerview.isHidden = true
+    }
+    
     @IBAction func ChangeProfilePicAction(_ sender: Any) {
         let changeProfilePicMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let CameraAction = UIAlertAction(title: "Camera", style: .default, handler: {
@@ -99,11 +121,7 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
         self.dismiss(animated: true, completion: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
 
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -163,6 +181,8 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
             sexlabel.text = SingletonClass.shared.usersex
             weightlabel.text = SingletonClass.shared.userweight
         }
+        print("Dictionary-----\(SingletonClass.shared.userDict)")
+
     }
 
     /*

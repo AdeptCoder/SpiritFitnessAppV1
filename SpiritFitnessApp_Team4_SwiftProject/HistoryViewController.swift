@@ -8,11 +8,12 @@
 
 import UIKit
 import Foundation
-
-class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+import GoogleMobileAds
+class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,GADBannerViewDelegate {
 var items: [String] = ["3-Mar | 2 workouts, 333 steps", "4-Mar | 3 workouts, 122 steps", "5-Mar | 2 workouts, 2000 steps"]
 var sectiontitle:[String] = ["March 2017", "February 2017"]
     
+    @IBOutlet weak var adBannerview: GADBannerView!
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if(tableView.tag == 120){
         return 1}
@@ -59,6 +60,23 @@ func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        adBannerview.delegate = self
+        //appDelegate.adBannerView.isHidden = true
+        adBannerview.rootViewController = self
+        adBannerview.adUnitID = "ca-app-pub-9339720089672206/8417837977"
+        adBannerview.load(GADRequest())
+        
+        
+    }
+    
+    
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        adBannerview.isHidden = false
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        adBannerview.isHidden = true
     }
 
 override func didReceiveMemoryWarning() {

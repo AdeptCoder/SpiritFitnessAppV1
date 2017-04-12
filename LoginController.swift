@@ -13,7 +13,7 @@ import FirebaseAuth
 class LoginController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var emailtxt: UITextField!
     @IBOutlet weak var passwordtxt: UITextField!
-     var userDict:[String:Any] = [:]
+    
     @IBAction func RegisterButton(_ sender: Any) {
         let loginPageController = (
             storyboard?.instantiateViewController(
@@ -87,10 +87,10 @@ class LoginController: UIViewController,UITextFieldDelegate {
                     FIRDatabase.database().reference().child("users").child(id!).observeSingleEvent(of: .value, with: { (snapshot) in
                        
                         let userDictionary = snapshot.value as? [String:Any]
-                        
+                         SingletonClass.shared.userDict = userDictionary!
                         print("USER DICTIONARY: \(userDictionary)")
                     })
-                    print("Dictionary-----\(self.userDict)")
+                    //print("Dictionary-----\(self.userDict)")
                     SingletonClass.shared.isLoggedin = true
                     SingletonClass.shared.username = "sumi"
                     SingletonClass.shared.useremail = "sumi@gmail.com"
