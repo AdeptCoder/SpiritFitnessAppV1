@@ -11,7 +11,8 @@ import Firebase
 import FirebaseAuth
 
 var userData: FIRDatabaseReference!
-
+var workoutRef: FIRDatabaseReference!
+var walkmeterRef: FIRDatabaseReference!
 class RegistrationController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate, UITextFieldDelegate {
     @IBOutlet var addresstxt: UITextField!
     @IBOutlet var nametxt: UITextField!
@@ -40,7 +41,10 @@ class RegistrationController: UIViewController, UIPickerViewDataSource, UIPicker
         statePicker.delegate = self
         if(FIRApp.defaultApp() == nil){
             FIRApp.configure()}
-        userData = FIRDatabase.database().reference().child("users");
+        userData = FIRDatabase.database().reference().child("registeredusers")
+        workoutRef = FIRDatabase.database().reference().child("workoutData")
+        walkmeterRef = FIRDatabase.database().reference().child("walkmeter")
+        
         citytxt.delegate = self
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RegistrationController.dismissKeyboard)))
     }
@@ -65,6 +69,13 @@ class RegistrationController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     func addUsers(uid:String){
+        let currentDateTime = Date()
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .none
+        let date = formatter.string(from: currentDateTime)
+
+        
         let users:[String:Any] = [ "id" : uid,
                       "name": nametxt.text! as String,
                       "address": addresstxt.text! as String,
@@ -73,7 +84,9 @@ class RegistrationController: UIViewController, UIPickerViewDataSource, UIPicker
                       "age": agetxt.text! as String,
                       "weight": weighttxt.text! as String,
                       "password": passwordtxt.text! as String,
-                      "sex":sextxt.text! as String]
+                      "sex":sextxt.text! as String,
+                      "accCreatedDate":date as String,
+                      "lastVisitedDate":"" as String]
 
         
         userData.child(uid).updateChildValues(users)

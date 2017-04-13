@@ -4,16 +4,19 @@
 //
 //  Created by Sumirna Philips on 3/22/17.
 //  Copyright © 2017 19483. All rights reserved.
-//
 
 import UIKit
 import AVFoundation
 import GoogleMobileAds
+
+import Firebase
+import FirebaseAuth
+
+
 class WorkOutViewController: UIViewController,GADBannerViewDelegate {
     
     @IBOutlet weak var adBannerview: GADBannerView!
     @IBOutlet weak var titleToolBar: UIToolbar!
-    
     @IBOutlet var timerLabel: UILabel!
     @IBOutlet var startButton: UIButton!
     @IBOutlet var workOutImage: UIImageView!
@@ -26,7 +29,7 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
     
     var count = 0;
     var completedWorkOutCount = 0
-    var wcounter = 0;
+    var wcounter = -1;
     var timer =  Timer();
     var workoutImages:[String] = ["workout1.png","workout2.png","workout3.png","workout4.png","workout5.png","workout6.png","workout7.png","workout8.png","workout9.png","workout10.png"]
     var workoutnames:[String] = ["High Knees","Squats","Plank", "Mountain Climber", "Sit Ups","Plank - R","Plank - L", "Lunge Run","Bicycle Crunch","Jumping Jack"];
@@ -35,6 +38,8 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
     //https://github.com/TUNER88/iOSSystemSoundsLibrary
     
     @IBAction func startWorkOut(_ sender: Any) {
+        wcounter = -1
+         ChangeWorkOut()
         self.frontView.isHidden = true
     }
     
@@ -72,25 +77,23 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
     }
     
     @IBAction func resetPressed(_ sender: Any) {
-        timer.invalidate()
-        //startButton.setTitle("Start", for: .normal)
-        StartStopLabel.text = "Start"
-        count = 0
-        timerLabel.text = "00"
+        resetAction()
     }
     
     func EndWorkOutWithMessage(alertTile:String, alertMessage:String){
         count=0
-        wcounter=0
+        //wcounter = -1
         timer.invalidate()
         StartStopLabel.text = "Start"
         timerLabel.text = "00"
+         ChangeWorkOut()
         let alert = UIAlertController(title: alertTile, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.frontView.isHidden = false}))
         self.present(alert, animated: true, completion: nil)
     }
 
     func workOutComplete(){
+       
         var message = ""
         var title = ""
         if(completedWorkOutCount == 0){
@@ -98,14 +101,31 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
         message = "You have not completed any 30sec activity in this  workout"}
         else{
             title = "Success"
-        message = "You have completed \(completedWorkOutCount) 30sec activities in this  workout"}
+        message = "You have completed \(completedWorkOutCount) 30sec activities in this  workout"
+            let duration = Double(completedWorkOutCount) * 0.5;
+            let currentDateTime = Date()
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .none
+            let datekey = formatter.string(from: currentDateTime)
+            formatter.dateStyle = .none
+            formatter.timeStyle = .medium
+            let time = formatter.string(from: currentDateTime)
+            let todayWorkoutData:[String:Any] = ["duration":duration, "source":UIDevice.current.name]
+            workoutRef.child(SingletonClass.shared.userid).child(datekey).child(time).updateChildValues(todayWorkoutData)
         EndWorkOutWithMessage(alertTile: title, alertMessage:message )
+            
+    }
+        
+        timer.invalidate()
     }
     
     func ChangeWorkOut(){
+        
         wcounter = wcounter+1
         if(wcounter==10){
             workOutComplete()
+         
         }
         else {
             previousWorkOutButton.isHidden = false
@@ -124,6 +144,8 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
             
             count = 0
             timerLabel.text = "00"
+            
+            
         }
     }
     
@@ -138,7 +160,11 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
             completedWorkOutCount = completedWorkOutCount+1
             AudioServicesPlaySystemSound (systemSoundID1)
             ChangeWorkOut()
-            startTimer()
+            print("COUNTER=======>\(wcounter)")
+            if(wcounter != 11){
+                startTimer()
+            }
+            
         }
         else{
             AudioServicesPlaySystemSound (systemSoundID)
@@ -167,15 +193,11 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         previousWorkOutButton.isHidden = true;
-        //let imageval = UIImage(named: "btnnew.png")?.withRenderingMode(.alwaysOriginal)
-        
         let button1 = UIBarButtonItem(title: "End",
                                       style: UIBarButtonItemStyle.done,
                                       target: self,
                                       action: #selector(cancelAction))
         button1.tintColor = UIColor.cyan
-        //button1.setBackgroundImage(imageval, for: .normal, barMetrics: .default)
-        
         let button2 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
                                       target: nil, action: nil)
         
@@ -184,22 +206,15 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
                                       target: self,
                                       action: #selector(resetAction))
         button3.tintColor = UIColor.cyan
-        //button3.setBackgroundImage(imageval, for: .normal, barMetrics: .default)
         
         self.titleToolBar.items?.append(button1)
         self.titleToolBar.items?.append(button2)
         self.titleToolBar.items?.append(button3)
-        
-        //self.frontView.backgroundColor = UIColor(patternImage: UIImage(named: "bg1.png")!)
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg1.png")!)
-        // Do any additional setup after loading the view, typically from a nib.
+       
         adBannerview.delegate = self
-        //appDelegate.adBannerView.isHidden = true
         adBannerview.rootViewController = self
         adBannerview.adUnitID = "ca-app-pub-9339720089672206/8417837977"
         adBannerview.load(GADRequest())
-        
-        
     }
     
     

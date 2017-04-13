@@ -77,10 +77,13 @@ class LoginController: UIViewController,UITextFieldDelegate {
                 
                 if error == nil {
                     let id = user?.uid
-                    FIRDatabase.database().reference().child("users").child(id!).observeSingleEvent(of: .value, with: { (snapshot) in
+                    print("DATA::::::::\(FIRDatabase.database().reference().child("registeredusers").child(id!))")
+                    FIRDatabase.database().reference().child("registeredusers").child(id!).observeSingleEvent(of: .value, with: { (snapshot) in
                 
                         let userDictionary = snapshot.value as? [String:Any]!
+                        print("DICTIONARY:::::\(userDictionary)")
                          SingletonClass.shared.userDict = userDictionary!
+                        SingletonClass.shared.userid = userDictionary?["id"] as! String
                         SingletonClass.shared.username = userDictionary?["name"] as! String
                         SingletonClass.shared.useremail = userDictionary?["email"] as! String
                         SingletonClass.shared.userage = userDictionary?["age"] as! String

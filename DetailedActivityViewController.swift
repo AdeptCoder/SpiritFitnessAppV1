@@ -26,6 +26,9 @@ class activityDetailsCustomForStepsTableViewCell: UITableViewCell{
 class DetailedActivityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,GADBannerViewDelegate {
    @IBOutlet weak var dateTitleLabel: UILabel!
     
+    
+    
+    
     @IBOutlet weak var adBannerview: GADBannerView!
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 1
@@ -38,19 +41,20 @@ class DetailedActivityViewController: UIViewController, UITableViewDelegate, UIT
         
         if(indexPath.section == 0){
             let cell = tableView.dequeueReusableCell(withIdentifier: "firsttableCell", for: indexPath) as! activityDetailsCustomTableViewCell
-            cell.workOutSetsCount?.text = "2"
-            cell.caloriesBurntDetails?.text = "1000"
-            cell.durationDetails?.text = "20"
-            cell.deviceSourceDetials?.text = UIDevice.current.name
+            cell.workOutSetsCount?.text = "\(SingletonClass.shared.workoutsetNumber)"
+            cell.caloriesBurntDetails?.text = "\(SingletonClass.shared.workoutsetNumber * 60)"
+            cell.durationDetails?.text = "\(SingletonClass.shared.duration)"
+            cell.deviceSourceDetials?.text = SingletonClass.shared.workoutSource
             return cell
         }
         else {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "secondtableCell", for: indexPath) as! activityDetailsCustomForStepsTableViewCell
-            cell.noOfStepsDetails?.text = "2000"
-            cell.distanceWalkedDetails?.text = "1 mil"
-            cell.caloriesBurntByWalkDetail?.text = "50"
-            cell.deviceSourceDetail?.text = UIDevice.current.name
+            let distance = Double(SingletonClass.shared.noOfSteps)/2000.00
+            cell.noOfStepsDetails?.text = "\(SingletonClass.shared.noOfSteps)"
+            cell.distanceWalkedDetails?.text = "\(distance)"
+            cell.caloriesBurntByWalkDetail?.text = "\(distance * 75)"
+            cell.deviceSourceDetail?.text = SingletonClass.shared.stepsSource
             return cell
         }
     }
@@ -91,15 +95,8 @@ func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) ->
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let date = Date()
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        dateTitleLabel.text = SingletonClass.shared.selectedDate
         
-        let year =  components.year!
-        let month = components.month!
-        let day = components.day!
-        dateTitleLabel.text = "Date: \(month)-\(day)-\(year)"
-       
         adBannerview.delegate = self
         //appDelegate.adBannerView.isHidden = true
         adBannerview.rootViewController = self
