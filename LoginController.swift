@@ -35,11 +35,6 @@ class LoginController: UIViewController,UITextFieldDelegate {
         passwordtxt.delegate = self
   }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // for tapping outside the text field
     func dismissKeyboard() {
         passwordtxt.resignFirstResponder()
@@ -50,17 +45,7 @@ class LoginController: UIViewController,UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func loginAction(_ sender: Any) {
         if self.emailtxt.text == "" || self.passwordtxt.text == "" {
@@ -112,4 +97,10 @@ class LoginController: UIViewController,UITextFieldDelegate {
             }
         }
     }
+
+override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
 }
+}
+

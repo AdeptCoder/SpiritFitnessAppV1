@@ -68,7 +68,6 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
         }
     }
     
-    
     @IBAction func pausePressed(_ sender: Any) {
         timer.invalidate()
     }
@@ -82,7 +81,6 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
         timer.invalidate()
         StartStopLabel.text = "Start"
         timerLabel.text = "00"
-        
         let alert = UIAlertController(title: alertTile, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.frontView.isHidden = false}))
         self.present(alert, animated: true, completion: nil)
@@ -108,12 +106,8 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
             let time = formatter.string(from: currentDateTime)
             let todayWorkoutData:[String:Any] = ["duration":duration, "source":UIDevice.current.name]
             workoutRef.child(SingletonClass.shared.userid).child(datekey).child(time).updateChildValues(todayWorkoutData)
-        EndWorkOutWithMessage(alertTile: title, alertMessage:message )
-            
-    }
-        
-        timer.invalidate()
-    }
+        EndWorkOutWithMessage(alertTile: title, alertMessage:message )}
+        timer.invalidate()}
     
     func ChangeWorkOut(){
         wcounter = wcounter+1
@@ -132,13 +126,9 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
             self.workOutImage.image=UIImage(named: workoutImages[wcounter])
             workoutTitleLabel.text="Work Out - \(wcounter+1). \(workoutnames[wcounter])"
             timer.invalidate()
-            //startButton.setTitle("Start", for: .normal)
              StartStopLabel.text = "Start"
-            
             count = 0
             timerLabel.text = "00"
-            
-            
         }
     }
     
@@ -178,8 +168,7 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
     
     func resetAction() {
         timer.invalidate()
-        //startButton.setTitle("Start", for: .normal)
-        StartStopLabel.text = "Start"
+       StartStopLabel.text = "Start"
         
         count = 0
         timerLabel.text = "00"

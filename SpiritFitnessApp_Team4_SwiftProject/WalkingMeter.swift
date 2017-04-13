@@ -19,7 +19,6 @@ var stepsTaken:[Int] = []
 let pedoMeter = CMPedometer()
   
     override func viewWillAppear(_ animated: Bool) {
-        
         var cal = NSCalendar.current
         var comps = cal.dateComponents([.year, .month, .day, .hour, .minute, .second], from: Date())
         comps.hour = 0
@@ -46,18 +45,14 @@ let pedoMeter = CMPedometer()
                 })
             }
         }
-        
        /*steps = NSNumber(integerLiteral: 2000)
-        
         let todayWalkData:[String:Any] = ["noofsteps":steps, "source":UIDevice.current.name]
         walkmeterRef.child(SingletonClass.shared.userid).child(SingletonClass.shared.today).updateChildValues(todayWalkData)*/
-        
     }
     
 override func viewDidLoad() {
     super.viewDidLoad()
     adBannerview.delegate = self
-    //appDelegate.adBannerView.isHidden = true
     adBannerview.rootViewController = self
     adBannerview.adUnitID = "ca-app-pub-9339720089672206/8417837977"
     adBannerview.load(GADRequest())

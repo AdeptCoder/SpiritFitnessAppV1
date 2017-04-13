@@ -23,17 +23,14 @@ class HistoryViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var adBannerview: GADBannerView!
     
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
- 
         return totalobject
 }
 func numberOfSections(in tableView: UITableView) -> Int{
-   
-        return 1
+    return 1
 }
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-   
-        let keyval = self.workoutitemKeys[indexPath.row]
+    let keyval = self.workoutitemKeys[indexPath.row]
         let dictValues:NSDictionary = self.workoutitems[indexPath.row] as! NSDictionary
        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         let sets = dictValues ["noofsets"]
@@ -48,14 +45,11 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 
         steps = walkDict ["noofsteps"] as! NSNumber
         cell.textLabel?.text = "   \(keyval) | \(sets!) workouts, \(steps) steps"
-        
     }
     else{
         cell.textLabel?.text = "   \(keyval) | \(sets!) workouts"
     }
-    
-         return cell
-    
+    return cell
 }
   
 func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath){
@@ -63,19 +57,14 @@ func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPa
         storyboard?.instantiateViewController(
             withIdentifier: "DetailedActivityModal")
         )!
-    
-    
     let keyval = self.workoutitemKeys[indexPath.row]
     var walkDict:NSDictionary = [:]
     if(self.walkitemKeys.contains(keyval)){
          walkDict =  self.walkitems.object(at: self.walkitemKeys.index(of: keyval)) as! NSDictionary
     }
-    
-
     let dictValues:NSDictionary = self.workoutitems[indexPath.row] as! NSDictionary
     detailedViewController.modalTransitionStyle = .crossDissolve
     SingletonClass.shared.datevalue = self.workoutitemKeys[indexPath.row] as! String
-    
     var sets = 0
      var duration = 0.0
      var source = ""
@@ -88,7 +77,6 @@ func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPa
      SingletonClass.shared.workoutsetNumber = sets
      SingletonClass.shared.duration = duration
      SingletonClass.shared.workoutSource = source
-    
     if(walkDict.count != 0){
     SingletonClass.shared.noOfSteps = walkDict ["noofsteps"] as! Int
      SingletonClass.shared.stepsSource = walkDict ["source"] as! String
@@ -99,10 +87,7 @@ func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPa
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
         adBannerview.delegate = self
-        //appDelegate.adBannerView.isHidden = true
         adBannerview.rootViewController = self
         adBannerview.adUnitID = "ca-app-pub-9339720089672206/8417837977"
         adBannerview.load(GADRequest())
@@ -113,14 +98,12 @@ func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPa
     override func viewWillAppear(_ animated: Bool) {
        // print("MODEL:::\(UIDevice.current.)")
         FIRDatabase.database().reference().child("walkmeter").child(SingletonClass.shared.userid).observeSingleEvent(of: .value, with: { (snapshot1) in
-            
             let walkmeteruserDictionary = snapshot1.value as? [String:Any]!
             if(walkmeteruserDictionary != nil){
             SingletonClass.shared.walkdata = walkmeteruserDictionary!
             self.createlocalwalkdata()
                 print("WALKING VALUE---->\(walkmeteruserDictionary)")}
         })
-            
         FIRDatabase.database().reference().child("workoutData").child(SingletonClass.shared.userid).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let workoutuserDictionary = snapshot.value as? [String:Any]!
@@ -129,17 +112,14 @@ func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPa
             self.totalobject = (workoutuserDictionary?.count)!
            self.createlocalworkoutdata()
             self.reportTableView.reloadData()
-            }
-                   })
-        
+            }})
     }
     func createlocalwalkdata(){
         for (key, value) in SingletonClass.shared.walkdata{
                 self.walkitems.add(value)
             self.walkitemKeys.add(key)
-        }
-        
-    }
+        }}
+    
     func createlocalworkoutdata(){
         for (key, value) in SingletonClass.shared.workoutData{
             var duration:Double = 0.0
@@ -157,8 +137,7 @@ func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPa
             self.workoutitemKeys.add(key)
             self.workoutitems.add(["noofsets":(value as! NSDictionary).count,"duration":duration, "source":workoutsource] as NSDictionary);
            
-    }
-    }
+        }}
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         adBannerview.isHidden = false
@@ -172,6 +151,4 @@ override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
 }
-
-
 }

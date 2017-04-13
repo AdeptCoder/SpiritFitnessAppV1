@@ -25,9 +25,6 @@ class activityDetailsCustomForStepsTableViewCell: UITableViewCell{
 
 class DetailedActivityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,GADBannerViewDelegate {
    @IBOutlet weak var dateTitleLabel: UILabel!
-   
-    
-    
     @IBOutlet weak var adBannerview: GADBannerView!
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return 1
@@ -65,23 +62,6 @@ class DetailedActivityViewController: UIViewController, UITableViewDelegate, UIT
         print("You selected cell #\(indexPath.row)!")
         
     }
-    
-/*func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    
-    let myLabel = UILabel(frame: CGRect(x: 20, y: 15, width: 320, height: 20))
-    let systemDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: UIFontTextStyle.headline)
-    let size = systemDynamicFontDescriptor.pointSize
-    let font = UIFont(name: "ArialHebrew-Bold", size:size)
-    
-     myLabel.font = font
-    myLabel.textColor = UIColor.brown
-   // myLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
-    myLabel.text = self.tableView(tableView,titleForHeaderInSection:section)
-    let headerView:UIView = UIView(frame: CGRect(x: 0, y: 8, width: 320, height: 30))
-
-    headerView.addSubview(myLabel)
-    return headerView;
-    }*/
    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if(section == 0){
@@ -98,16 +78,11 @@ class DetailedActivityViewController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         dateTitleLabel.text = SingletonClass.shared.selectedDate
-        
         adBannerview.delegate = self
-        //appDelegate.adBannerView.isHidden = true
         adBannerview.rootViewController = self
         adBannerview.adUnitID = "ca-app-pub-9339720089672206/8417837977"
         adBannerview.load(GADRequest())
-        
-        
     }
-    
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         adBannerview.isHidden = false
@@ -123,5 +98,21 @@ class DetailedActivityViewController: UIViewController, UITableViewDelegate, UIT
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    /*func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+     
+     let myLabel = UILabel(frame: CGRect(x: 20, y: 15, width: 320, height: 20))
+     let systemDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: UIFontTextStyle.headline)
+     let size = systemDynamicFontDescriptor.pointSize
+     let font = UIFont(name: "ArialHebrew-Bold", size:size)
+     
+     myLabel.font = font
+     myLabel.textColor = UIColor.brown
+     // myLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+     myLabel.text = self.tableView(tableView,titleForHeaderInSection:section)
+     let headerView:UIView = UIView(frame: CGRect(x: 0, y: 8, width: 320, height: 30))
+     
+     headerView.addSubview(myLabel)
+     return headerView;
+     }*/
 
 }

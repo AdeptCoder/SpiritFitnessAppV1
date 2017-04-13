@@ -45,57 +45,6 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
         
     }
    
-    private var _name = String()
-    
-    var name : String {
-        get {
-            return _name
-        } set {
-            _name = newValue
-        }
-    }
-    
-    private var _email = String()
-    
-    var email : String {
-        get {
-            return _email
-        } set {
-            _email = newValue
-        }
-    }
-    
-    private var _age = String()
-    
-    var age : String {
-        get {
-            return _age
-        } set {
-            _age = newValue
-        }
-    }
-    
-    private var _sex = String()
-    
-    var sex : String {
-        get {
-            return _sex
-        } set {
-            _sex = newValue
-        }
-    }
-    
-    private var _weight = String()
-    
-    var weight : String {
-        get {
-            return _weight
-        } set {
-            _weight = newValue
-        }
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         adBannerview.delegate = self
@@ -103,7 +52,6 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
        adBannerview.adUnitID = "ca-app-pub-9339720089672206/8417837977"
         adBannerview.load(GADRequest())
 }
-    
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         adBannerview.isHidden = false
@@ -142,12 +90,6 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
         self.dismiss(animated: true, completion: nil)
     }
     
-
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     func CameraActionfn(){
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -165,14 +107,6 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
         self.present(picker, animated:true) {
         }
  
-    }
-    
-    @IBAction func CameraAction(_ sender: Any) {
-        CameraActionfn()
-    }
-    
-    @IBAction func PhotoLibraryAction(_ sender: Any) {
-        PhotoLibActionfn()
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -201,17 +135,11 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
             sexlabel.text = SingletonClass.shared.usersex
             weightlabel.text = SingletonClass.shared.userweight
         }
-       // print("Dictionary-----\(SingletonClass.shared.userDict)")
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-    */
 
 }
