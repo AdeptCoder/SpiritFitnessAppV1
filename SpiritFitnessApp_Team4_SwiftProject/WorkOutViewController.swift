@@ -68,9 +68,6 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
         }
     }
     
-    @IBAction func EndWorkOutButtonAction(_ sender: Any) {
-        EndWorkOutWithMessage(alertTile: "Alert", alertMessage: "You have ended the workout")
-    }
     
     @IBAction func pausePressed(_ sender: Any) {
         timer.invalidate()
@@ -174,6 +171,7 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
     }
     func cancelAction() {
         EndWorkOutWithMessage(alertTile: "Alert", alertMessage: "You have ended the workout")
+         wcounter = wcounter-1
         ChangeWorkOut()
         
     }

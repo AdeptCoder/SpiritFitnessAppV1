@@ -118,10 +118,12 @@ func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPa
         FIRDatabase.database().reference().child("workoutData").child(SingletonClass.shared.userid).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let workoutuserDictionary = snapshot.value as? [String:Any]!
+            if(workoutuserDictionary != nil){
             SingletonClass.shared.workoutData = workoutuserDictionary!
             self.totalobject = (workoutuserDictionary?.count)!
            self.createlocalworkoutdata()
             self.reportTableView.reloadData()
+            }
                    })
         
     }

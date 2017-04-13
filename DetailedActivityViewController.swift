@@ -25,8 +25,7 @@ class activityDetailsCustomForStepsTableViewCell: UITableViewCell{
 
 class DetailedActivityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,GADBannerViewDelegate {
    @IBOutlet weak var dateTitleLabel: UILabel!
-    
-    
+   
     
     
     @IBOutlet weak var adBannerview: GADBannerView!
@@ -34,7 +33,10 @@ class DetailedActivityViewController: UIViewController, UITableViewDelegate, UIT
             return 1
     }
     func numberOfSections(in tableView: UITableView) -> Int{
-            return 2
+        if(SingletonClass.shared.noOfSteps == 0){
+            return 1}
+        else{
+            return 2}
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -64,22 +66,22 @@ class DetailedActivityViewController: UIViewController, UITableViewDelegate, UIT
         
     }
     
-func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+/*func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     
-    let myLabel = UILabel(frame: CGRect(x: 20, y: 8, width: 320, height: 20))
+    let myLabel = UILabel(frame: CGRect(x: 20, y: 15, width: 320, height: 20))
     let systemDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: UIFontTextStyle.headline)
     let size = systemDynamicFontDescriptor.pointSize
     let font = UIFont(name: "ArialHebrew-Bold", size:size)
     
      myLabel.font = font
-    myLabel.textColor = UIColor.darkGray
+    myLabel.textColor = UIColor.brown
    // myLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
     myLabel.text = self.tableView(tableView,titleForHeaderInSection:section)
     let headerView:UIView = UIView(frame: CGRect(x: 0, y: 8, width: 320, height: 30))
 
     headerView.addSubview(myLabel)
     return headerView;
-    }
+    }*/
    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if(section == 0){
