@@ -426,7 +426,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kAn-sY-qPU" customClass="GADBannerView">
-                                <rect key="frame" x="0.0" y="567" width="375" height="49"/>
+                                <rect key="frame" x="0.0" y="559" width="375" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.7644401972" green="0.9244209444" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -670,10 +670,6 @@
                                     <constraint firstAttribute="height" constant="30" id="SH4-1n-Edv"/>
                                     <constraint firstAttribute="width" constant="79" id="jgJ-YS-Aad"/>
                                 </constraints>
-                                <state key="normal" title="Camera"/>
-                                <connections>
-                                    <action selector="CameraAction:" destination="McC-Xw-4Rh" eventType="touchUpInside" id="qrx-V3-0qz"/>
-                                </connections>
                             </button>
                             <view alpha="0.34999999403953552" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YuD-r4-T4W" userLabel="Divider">
                                 <rect key="frame" x="52" y="368" width="303" height="1"/>
@@ -697,16 +693,12 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5E-lO-bns">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m5E-lO-bns">
                                 <rect key="frame" x="259" y="126" width="116" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="116" id="hJr-ah-2DX"/>
                                     <constraint firstAttribute="height" constant="30" id="hmB-NL-SaS"/>
                                 </constraints>
-                                <state key="normal" title="PhotoLibrary"/>
-                                <connections>
-                                    <action selector="PhotoLibraryAction:" destination="McC-Xw-4Rh" eventType="touchUpInside" id="li4-6E-EbR"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDZ-FA-24m">
                                 <rect key="frame" x="108" y="164" width="166" height="143"/>
@@ -766,9 +758,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="User Profile" image="user" id="Q1P-HK-NQ7"/>
                     <connections>
-                        <outlet property="Camera" destination="Lii-XS-4iv" id="dDi-GI-gks"/>
                         <outlet property="ImageViewOrg" destination="tkT-SZ-gDH" id="RzY-sl-wa6"/>
-                        <outlet property="PhotoLibrary" destination="m5E-lO-bns" id="tvy-Op-NRu"/>
                         <outlet property="adBannerview" destination="Z65-62-4rd" id="I12-hF-KG5"/>
                         <outlet property="agelabel" destination="gX4-mG-aLB" id="Vkk-6g-Poz"/>
                         <outlet property="emailidlabel" destination="oIV-cF-ymW" id="2ek-5I-Q3i"/>

@@ -31,6 +31,10 @@ func numberOfSections(in tableView: UITableView) -> Int{
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let keyval = self.workoutitemKeys[indexPath.row]
+    print ("WORKOUT ITEM KEY -->\(workoutitemKeys)")
+    print ("WORKOUT -->\(workoutitems)")
+    print ("WALK ITEM KEY -->\(walkitemKeys)")
+    print ("WALK ITEM -->\(walkitems)")
         let dictValues:NSDictionary = self.workoutitems[indexPath.row] as! NSDictionary
        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         let sets = dictValues ["noofsets"]
@@ -97,11 +101,15 @@ func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPa
     
     override func viewWillAppear(_ animated: Bool) {
        // print("MODEL:::\(UIDevice.current.)")
+        var workct = 0
+        var walkct = 0
+        
         FIRDatabase.database().reference().child("walkmeter").child(SingletonClass.shared.userid).observeSingleEvent(of: .value, with: { (snapshot1) in
             let walkmeteruserDictionary = snapshot1.value as? [String:Any]!
             if(walkmeteruserDictionary != nil){
             SingletonClass.shared.walkdata = walkmeteruserDictionary!
             self.createlocalwalkdata()
+                walkct = (walkmeteruserDictionary?.count)!
                 print("WALKING VALUE---->\(walkmeteruserDictionary)")}
         })
         FIRDatabase.database().reference().child("workoutData").child(SingletonClass.shared.userid).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -109,18 +117,25 @@ func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPa
             let workoutuserDictionary = snapshot.value as? [String:Any]!
             if(workoutuserDictionary != nil){
             SingletonClass.shared.workoutData = workoutuserDictionary!
-            self.totalobject = (workoutuserDictionary?.count)!
+                workct = (workoutuserDictionary?.count)!
+                self.totalobject = walkct
+                if(workct > walkct) {
+                    self.totalobject = workct }
            self.createlocalworkoutdata()
             self.reportTableView.reloadData()
             }})
     }
     func createlocalwalkdata(){
+        self.walkitems.removeAllObjects()
+        self.walkitemKeys.removeAllObjects()
         for (key, value) in SingletonClass.shared.walkdata{
                 self.walkitems.add(value)
             self.walkitemKeys.add(key)
         }}
     
     func createlocalworkoutdata(){
+        self.workoutitemKeys.removeAllObjects()
+        self.workoutitems.removeAllObjects()
         for (key, value) in SingletonClass.shared.workoutData{
             var duration:Double = 0.0
             for(key1,value1) in value as! NSDictionary {

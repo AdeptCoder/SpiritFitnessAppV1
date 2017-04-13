@@ -57,5 +57,6 @@ workoutsetNumber = 0
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
         today = formatter.string(from: currentDateTime)
+        //today = "Apr 10, 2017"
     }
 }

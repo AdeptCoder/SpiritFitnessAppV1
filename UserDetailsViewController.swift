@@ -42,7 +42,18 @@ class UserDetailsViewController: UIViewController,UIImagePickerControllerDelegat
                 SingletonClass.shared.usersex = ""
             weightlabel.text = ""
                 SingletonClass.shared.userweight = ""
-        
+        SingletonClass.shared.userid = ""
+        SingletonClass.shared.workoutData = [:]
+        SingletonClass.shared.walkdata = [:]
+        SingletonClass.shared.userDict = [:]
+        SingletonClass.shared.today = ""
+        SingletonClass.shared.selectedDate = ""
+        SingletonClass.shared.datevalue = ""
+        SingletonClass.shared.workoutsetNumber = 0
+        SingletonClass.shared.duration = 0.0
+        SingletonClass.shared.noOfSteps = 0
+        SingletonClass.shared.workoutSource = ""
+        SingletonClass.shared.stepsSource = ""
     }
    
     override func viewDidLoad() {

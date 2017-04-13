@@ -89,12 +89,13 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
     func workOutComplete(){
         var message = ""
         var title = ""
+        //completedWorkOutCount = 10
         if(completedWorkOutCount == 0){
             title = "Alert"
         message = "You have not completed any 30sec activity in this  workout"}
         else{
             title = "Success"
-        message = "You have completed \(completedWorkOutCount) 30sec activities in this  workout"
+        message = "You have completed '\(completedWorkOutCount)' 30sec activities in this  workout"
             let duration = Double(completedWorkOutCount) * 0.5;
             let currentDateTime = Date()
             let formatter = DateFormatter()
@@ -105,7 +106,7 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
             formatter.timeStyle = .medium
             let time = formatter.string(from: currentDateTime)
             let todayWorkoutData:[String:Any] = ["duration":duration, "source":UIDevice.current.name]
-            workoutRef.child(SingletonClass.shared.userid).child(datekey).child(time).updateChildValues(todayWorkoutData)
+            workoutRef.child(SingletonClass.shared.userid).child(SingletonClass.shared.today).child(time).updateChildValues(todayWorkoutData)
         EndWorkOutWithMessage(alertTile: title, alertMessage:message )}
         timer.invalidate()}
     

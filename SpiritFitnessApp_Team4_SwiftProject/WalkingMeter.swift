@@ -45,7 +45,7 @@ let pedoMeter = CMPedometer()
                 })
             }
         }
-       /*steps = NSNumber(integerLiteral: 2000)
+      /* steps = NSNumber(integerLiteral: 10000)
         let todayWalkData:[String:Any] = ["noofsteps":steps, "source":UIDevice.current.name]
         walkmeterRef.child(SingletonClass.shared.userid).child(SingletonClass.shared.today).updateChildValues(todayWalkData)*/
     }
