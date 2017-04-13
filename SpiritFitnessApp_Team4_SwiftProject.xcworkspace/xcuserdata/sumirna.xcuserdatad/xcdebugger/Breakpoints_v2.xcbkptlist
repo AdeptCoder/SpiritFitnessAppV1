@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoginController.swift"
-            timestampString = "513656972.816383"
+            timestampString = "513766740.263185"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
             landmarkName = "LoginController"
             landmarkType = "3">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpiritFitnessApp_Team4_SwiftProject/RegistrationController.swift"
-            timestampString = "513763883.123344"
+            timestampString = "513766740.263185"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "addUsers(uid:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -90,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpiritFitnessApp_Team4_SwiftProject/WorkOutViewController.swift"
-            timestampString = "513751089.985331"
+            timestampString = "513766457.356657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "ChangeWorkOut()"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "counter()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -106,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpiritFitnessApp_Team4_SwiftProject/WorkOutViewController.swift"
-            timestampString = "513751090.482361"
+            timestampString = "513766583.36931"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "ChangeWorkOut()"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "workOutComplete()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -122,12 +122,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SpiritFitnessApp_Team4_SwiftProject/WorkOutViewController.swift"
-            timestampString = "513751091.236321"
+            timestampString = "513766583.906201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "ChangeWorkOut()"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "workOutComplete()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpiritFitnessApp_Team4_SwiftProject/WorkOutViewController.swift"
+            timestampString = "513766771.132061"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "workOutComplete()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SpiritFitnessApp_Team4_SwiftProject/WorkOutViewController.swift"
+            timestampString = "513766825.347487"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "counter()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

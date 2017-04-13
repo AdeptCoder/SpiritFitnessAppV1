@@ -9,7 +9,8 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-
+var workoutRef: FIRDatabaseReference!
+var walkmeterRef: FIRDatabaseReference!
 class LoginController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var emailtxt: UITextField!
     @IBOutlet weak var passwordtxt: UITextField!
@@ -28,6 +29,8 @@ class LoginController: UIViewController,UITextFieldDelegate {
         if(FIRApp.defaultApp() == nil){
         FIRApp.configure()
         }
+        workoutRef = FIRDatabase.database().reference().child("workoutData")
+        walkmeterRef = FIRDatabase.database().reference().child("walkmeter")
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RegistrationController.dismissKeyboard)))
         passwordtxt.delegate = self
   }

@@ -11,8 +11,7 @@ import Firebase
 import FirebaseAuth
 
 var userData: FIRDatabaseReference!
-var workoutRef: FIRDatabaseReference!
-var walkmeterRef: FIRDatabaseReference!
+
 class RegistrationController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDelegate, UITextFieldDelegate {
     @IBOutlet var addresstxt: UITextField!
     @IBOutlet var nametxt: UITextField!
@@ -42,8 +41,7 @@ class RegistrationController: UIViewController, UIPickerViewDataSource, UIPicker
         if(FIRApp.defaultApp() == nil){
             FIRApp.configure()}
         userData = FIRDatabase.database().reference().child("registeredusers")
-        workoutRef = FIRDatabase.database().reference().child("workoutData")
-        walkmeterRef = FIRDatabase.database().reference().child("walkmeter")
+       
         
         citytxt.delegate = self
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(RegistrationController.dismissKeyboard)))

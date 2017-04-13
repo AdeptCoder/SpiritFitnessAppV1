@@ -42,7 +42,7 @@ class DetailedActivityViewController: UIViewController, UITableViewDelegate, UIT
         if(indexPath.section == 0){
             let cell = tableView.dequeueReusableCell(withIdentifier: "firsttableCell", for: indexPath) as! activityDetailsCustomTableViewCell
             cell.workOutSetsCount?.text = "\(SingletonClass.shared.workoutsetNumber)"
-            cell.caloriesBurntDetails?.text = "\(SingletonClass.shared.workoutsetNumber * 60)"
+            cell.caloriesBurntDetails?.text = "\((SingletonClass.shared.duration/5.0) * 60)"
             cell.durationDetails?.text = "\(SingletonClass.shared.duration)"
             cell.deviceSourceDetials?.text = SingletonClass.shared.workoutSource
             return cell

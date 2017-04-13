@@ -82,18 +82,16 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
     
     func EndWorkOutWithMessage(alertTile:String, alertMessage:String){
         count=0
-        //wcounter = -1
         timer.invalidate()
         StartStopLabel.text = "Start"
         timerLabel.text = "00"
-         ChangeWorkOut()
+        
         let alert = UIAlertController(title: alertTile, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(action: UIAlertAction!) in self.frontView.isHidden = false}))
         self.present(alert, animated: true, completion: nil)
     }
 
     func workOutComplete(){
-       
         var message = ""
         var title = ""
         if(completedWorkOutCount == 0){
@@ -121,19 +119,17 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
     }
     
     func ChangeWorkOut(){
-        
         wcounter = wcounter+1
-        if(wcounter==10){
+        if(wcounter == 10){
             workOutComplete()
-         
         }
         else {
             previousWorkOutButton.isHidden = false
             nextWorkOutButton.isHidden = false
-            if(wcounter==0) {
+            if(wcounter == 0) {
                 previousWorkOutButton.isHidden = true
             }
-            else if(wcounter==9){
+            else if(wcounter == 9){
                 nextWorkOutButton.isHidden = true
             }
             self.workOutImage.image=UIImage(named: workoutImages[wcounter])
@@ -161,7 +157,7 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
             AudioServicesPlaySystemSound (systemSoundID1)
             ChangeWorkOut()
             print("COUNTER=======>\(wcounter)")
-            if(wcounter != 11){
+            if(wcounter != 10){
                 startTimer()
             }
             
@@ -178,6 +174,7 @@ class WorkOutViewController: UIViewController,GADBannerViewDelegate {
     }
     func cancelAction() {
         EndWorkOutWithMessage(alertTile: "Alert", alertMessage: "You have ended the workout")
+        ChangeWorkOut()
         
     }
     
