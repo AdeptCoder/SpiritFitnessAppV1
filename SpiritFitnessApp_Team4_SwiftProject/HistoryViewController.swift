@@ -37,10 +37,16 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         let dictValues:NSDictionary = self.workoutitems[indexPath.row] as! NSDictionary
        let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
         let sets = dictValues ["noofsets"]
-    var steps = ""
+    var steps = NSNumber(integerLiteral: 0)
     if(self.walkitemKeys.contains(keyval)){
-       let walkDict:NSDictionary =  self.walkitems.object(at: self.walkitemKeys.index(of: keyval)) as! NSDictionary
-        steps = walkDict ["noofsteps"] as! String
+        let  index = self.walkitemKeys.index(of: keyval)
+        print("KEY ---->\(keyval)")
+        print("INDEX ---->\(index)")
+        print("Walk items:::::----->\(self.walkitems)")
+       let walkDict:NSDictionary =  self.walkitems.object(at: index) as! NSDictionary
+        print("Walk DICT:::::----->\(walkDict)")
+
+        steps = walkDict ["noofsteps"] as! NSNumber
         cell.textLabel?.text = "   \(keyval) | \(sets!) workouts, \(steps) steps"
         
     }
@@ -129,9 +135,7 @@ func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPa
     }
     func createlocalwalkdata(){
         for (key, value) in SingletonClass.shared.walkdata{
-            for(key1,value1) in value as! NSDictionary{
-                self.walkitems.add(value1)
-            }
+                self.walkitems.add(value)
             self.walkitemKeys.add(key)
         }
         

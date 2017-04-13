@@ -27,7 +27,7 @@ let pedoMeter = CMPedometer()
         comps.second = 0
         let timeZone = NSTimeZone.system
         cal.timeZone = timeZone
-        
+        var steps = NSNumber(integerLiteral: 0)
         let midnightOfToday = cal.date(from: comps)!
         
         if(CMPedometer.isStepCountingAvailable()){
@@ -35,7 +35,7 @@ let pedoMeter = CMPedometer()
             self.pedoMeter.startUpdates(from: midnightOfToday) { (data: CMPedometerData?, error) -> Void in
                 DispatchQueue.main.async(execute: { () -> Void in
                     if(error == nil){
-                        let steps = data!.numberOfSteps
+                         steps = data!.numberOfSteps
                         if(Int(steps) > 0){
                             let todayWalkData:[String:Any] = ["noofsteps":steps, "source":UIDevice.current.name]
                         walkmeterRef.child(SingletonClass.shared.userid).child(SingletonClass.shared.today).updateChildValues(todayWalkData)
@@ -46,6 +46,11 @@ let pedoMeter = CMPedometer()
                 })
             }
         }
+        
+       /*steps = NSNumber(integerLiteral: 2000)
+        
+        let todayWalkData:[String:Any] = ["noofsteps":steps, "source":UIDevice.current.name]
+        walkmeterRef.child(SingletonClass.shared.userid).child(SingletonClass.shared.today).updateChildValues(todayWalkData)*/
         
     }
     
